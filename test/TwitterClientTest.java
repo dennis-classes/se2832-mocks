@@ -1,8 +1,11 @@
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
+import twitter4j.TwitterException;
 
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.doThrow;
 
 public class TwitterClientTest {
 
@@ -42,4 +45,14 @@ public class TwitterClientTest {
         //Assert
         assertEquals(tweet, client.getStatus("@bcdennis"));
     }
+
+    @Test(expected = TwitterException.class)
+    public void destroyTweetShouldThrowExceptionForInvalidId() throws Exception {
+        //Arrange
+
+        //Act
+        client.destroyTweet(-1);
+        //Assert
+    }
+
 }

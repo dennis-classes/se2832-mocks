@@ -1,9 +1,6 @@
 import twitter4j.*;
 import twitter4j.conf.ConfigurationBuilder;
 
-import java.util.Date;
-import java.util.List;
-
 public class TwitterClient {
     private Twitter twitter;
 
@@ -24,6 +21,7 @@ public class TwitterClient {
     public String getUser(String username) throws TwitterException {
         String userText = "";
         User user = twitter.showUser(username);
+
         if (user.getStatus() != null) {
             userText = "@" + user.getScreenName() + " - " + user.getStatus().getText();
         } else {
@@ -36,6 +34,7 @@ public class TwitterClient {
     public String getStatus(String username) throws TwitterException {
         String status = "";
         User user = twitter.showUser(username);
+
         if (user.getStatus() != null) {
             status = user.getStatus().getText();
         } else {
